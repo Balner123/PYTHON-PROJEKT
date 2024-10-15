@@ -150,11 +150,74 @@ Použijte kombinaci různý možností pro práci s řetězci (včetně různýc
 funkční kód, tím lepší).
 
 1. Převeďte "česky" zadané datum - např. 12. 10. 2020 - do podoby "databázové" podoby - např. 2020-10-12
+
+'''
+def convert_date(datum):
+    return '-'.join(reversed(datum.split('. ')))
+
+print(convert_date("12. 10. 2020"))
+
+'''
+
 2. Vytvořte funkci, která vyrobí ze zadaného sousloví:
    a) identifikátor pro proměnné používané v Pythonu - např. To je proměnná v Pythonu = to_je_promenna_v_pythonu
    b) identifikátor pro camel syntax v JS - např. To je proměnná v Pythonu = toJePromennaVPythonu 
    Obě možnosti by měly být vyřešeny v jedné funkci s využitím parametrů.
    Kdo si chce úkol trochu zjednodušit, nemusí řešit znaky s českou diakritikou. 
+   
+   '''
+   
+import unicodedata
+
+def text_na_identifikator():
+   
+    text = input("Zadej souslovi : ")
+    style = input("snake OR camel ?? : ")
+    
+    normalized_text = unicodedata.normalize('NFD', text)
+    filtered_text = ''.join(char for char in normalized_text if unicodedata.category(char) != 'Mn')
+    
+    if style == 'snake':
+        return '_'.join(filtered_text.lower().split())
+     
+    elif style == 'camel':
+        words = filtered_text.split()
+        return ''.join(words)
+     
+    else:
+        return "Neplatny styl!"
+     
+#print(text_na_identifikator())
+
+'''
+   
+   
 3. Vytvořte funkci, která vygeneruje náhodná hesla pro počet osob zadaný v parametru tak, aby heslo začínalo
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
+
+
+import random
+
+def generate_passwords():
+    passwords = []
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    lowercase = "abcdefghijklmnopqrstuvwxyz"
+    special_chars = "-+*"
+    digits = "0123456789"
+
+    upper = ''.join(random.choice(uppercase) for _ in range(3))
+    lower = ''.join(random.choice(lowercase) for _ in range(3))
+    special = random.choice(special_chars)
+    numbers = ''.join(random.choice(digits) for _ in range(3))
+        
+    password = f"{upper}{lower}{special}{numbers}"
+    passwords.append(password)
+    
+    return passwords
+ 
+ 
+ 
+ 
+
+print(generate_passwords())

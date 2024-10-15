@@ -187,7 +187,7 @@ def text_na_identifikator():
     else:
         return "Neplatny styl!"
      
-#print(text_na_identifikator())
+print(text_na_identifikator())
 
 '''
    
@@ -196,25 +196,26 @@ def text_na_identifikator():
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
 
-
 import random
 
-def generate_passwords():
-    passwords = []
+def generate_password():
+
     uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     lowercase = "abcdefghijklmnopqrstuvwxyz"
     special_chars = "-+*"
     digits = "0123456789"
 
-    upper = ''.join(random.choice(uppercase) for _ in range(3))
-    lower = ''.join(random.choice(lowercase) for _ in range(3))
-    special = random.choice(special_chars)
-    numbers = ''.join(random.choice(digits) for _ in range(3))
-        
-    password = f"{upper}{lower}{special}{numbers}"
-    passwords.append(password)
+    password = (
+        ''.join(random.choice(uppercase) for _ in range(3)) +
+        ''.join(random.choice(lowercase) for _ in range(3)) +
+        random.choice(special_chars) +
+        ''.join(random.choice(digits) for _ in range(3))
+    )
     
-    return passwords
+    return password
+    
+print(generate_password())
+
  
  
  

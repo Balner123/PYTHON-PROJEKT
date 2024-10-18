@@ -16,18 +16,17 @@ SPEED_OF_SOUND = 330 #? rychlost zvuku při teplotě 20 °C v suchém vzduchu (m
 1. Doplňte správně hodnoty uvedených konstant.
 '''
 
-def tiha_predmetu_na_mesici(hmotnost):
-    print(f"{hmotnost*MOON_GRAVITY}\n")
+def tiha_predmetu_na_mesici(hmotnostkg):
+    return hmotnostkg/EARTH_GRAVITY*MOON_GRAVITY #vrátí velikost tíže, jenž tělso působí na měsíci
     
 def tiha_predmetu_na_zemi(hmotnost):
-    print(f"{hmotnost*EARTH_GRAVITY}\n")    
+    return hmotnost*EARTH_GRAVITY #vrátí velikost tíže, jenž tělso působí na zemi
     
-
 def procent_rychlosti_svetla(rychlost):
-    print(f"{rychlost/SPEED_OF_LIGHT*100}%")
-
+    return (rychlost/SPEED_OF_LIGHT*3600)*100 #vypíše kolika procentům rychlosti světla se rovná zadaná rychlost
+        
 def procent_rychlosti_svetla(rychlost):
-    print(f"{rychlost/SPEED_OF_SOUND} Mach")
+    return rychlost/(SPEED_OF_SOUND*3.6) #vypíše kolika Machům se rovná zadaná rychlost
 
 
 '''

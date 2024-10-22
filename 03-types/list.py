@@ -275,13 +275,9 @@ print(f'\tSbalení seznamů do proměnné values: {values}\n')
 
 # ??? 2. cvičení ???
 # a) Vygenerujte do proměnné hundreds seznam čísel v rozsahu 1 až 2000. V seznamu budou pouze čísla dělitelná 200 beze zbytku.
-
 # b) Vygenerujte do proměnné ascii seznam 50 náhodně zvolených znaků - velkých písmen anglické abecedy.
-
 # c) Vymažte ze seznamu hundreds 3 první a 3 poslední hodnoty.
-
 # d) Projděte seznam ascii a uložte do proměnné unique (typu list) pouze jen ty znaky, které se v seznamu ascii neopakují.
-
 
 #  d)Projděte seznam ascii a uložte do proměnné unique (typu list) pouze jen ty znaky, které se v seznamu ascii neopakují.
 # e) Zkraťte délku seznamu ascii podle délky seznamu hundreds. Zkombinujte oba seznamy do proměnné combine tak,
@@ -310,7 +306,6 @@ combine = list(zip(hundreds, ascii))
 print(f'combine = {combine}')
 
 
-
 # ??? 3. cvičení ???
 # a) Přidejte do listu persons ještě n-tice (tuples) dalších 2 žen a 2 mužů.
 # b) Použijte seznam (list) persons a do proměnné women z něj pomocí lambda výrazu i comprehensions vyhledejte všechny ženy.
@@ -321,3 +316,25 @@ print(f'combine = {combine}')
 # Záznamy budou seřazeny podle věku (sestupně).
 
 print(f'\n*************************************\nCvičení 3\n*************************************')
+
+persons.extend([
+    ('Eva', 30, 'žena'),
+    ('Petr', 35, 'muž'),
+    ('Lenka', 28, 'žena'),
+    ('Tomáš', 45, 'muž')
+])
+print(f'pridani osob = {persons}')
+
+women = list(filter(lambda person: person[2] == 'žena', persons))
+women = [person for person in persons if person[2] == 'žena']
+
+for woman in women:
+    print(woman[0])
+    print('-' * len(woman[0]))
+
+ipeople = list(filter(lambda person: 'i' in person[0].lower(), persons))
+ipeople = [person for person in persons if 'i' in person[0].lower()]
+
+ipeople.sort(key=lambda person: person[1], reverse=True)
+csv_content = '\n'.join(f'{index + 1};{person[0]};{person[1]};{person[2]}' for index, person in enumerate(ipeople))
+print(csv_content)
